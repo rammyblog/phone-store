@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { storeProducts, detailProduct } from './data';
-
 const ProductContext = React.createContext();
+
 // Provider
 // Consumer
 
@@ -15,7 +15,11 @@ class ProductProvider extends Component {
         modalProduct: detailProduct,
         cartSubTotal: 0,
         cartTax: 0,
-        CartTotal: 0
+        CartTotal: 0,
+        key: '',
+        email: 'onasanyatunde67@gmail.com',
+        payStackAmount: 0,
+        paystackKey: "pk_test_66242613f73c8034560a3eecf9d248787f776bdb"
 
     };
 
@@ -49,6 +53,23 @@ class ProductProvider extends Component {
             return {detailProduct:product}
         })
         
+    }
+
+    callback = (response) => {
+        console.log(response); // card charged successfully, get reference here
+    }
+
+    close = () => {
+        console.log("Payment closed");
+    }
+
+    getReference = () => {
+        //you can put any unique reference implementation code here
+        let text = "";
+        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=";
+        for( let i=0; i < 15; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
     }
 
 
@@ -154,12 +175,14 @@ class ProductProvider extends Component {
         const tempTax = subtotal * 0.1
         const tax = parseFloat(tempTax.toFixed(2));
         const total = subtotal + tax
+        const amount = parseInt(total * 363 * 100)
 
         this.setState( () => {
             return {
                 cartSubTotal:subtotal,
                 cartTax: tax,
-                CartTotal:total
+                CartTotal:total,
+                paystackAmount:amount
             }
         })
     }
@@ -175,7 +198,10 @@ class ProductProvider extends Component {
                 increment: this.increment,
                 decrement: this.decrement,
                 removeItem: this.removeItem,
-                clearCart: this.clearCart
+                clearCart: this.clearCart,
+                callback : this.callback,
+                paystackClose: this.close,
+                getReference : this.getReference, 
             }}>
 
                 {this.props.children}

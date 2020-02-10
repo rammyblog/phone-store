@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PaystackButton from 'react-paystack';
+
 export default function CartTotals({value}) {
-    const { cartSubTotal, cartTax, CartTotal, clearCart } = value;
+    const { cartSubTotal, cartTax, CartTotal, clearCart, callback, paystackClose, getReference,email, paystackKey, paystackAmount } = value;
     return (
 
         <React.Fragment>
@@ -28,7 +30,20 @@ export default function CartTotals({value}) {
                             <span className='text-title'>total:</span>
                             <strong>$ {CartTotal}</strong>
                         </h5>
+                        <PaystackButton
+                        text="Make Payment"
+                        class="btn btn-outline-success"
+                        callback={callback}
+                        close={paystackClose}
+                        reference={getReference()}
+                        email={email}
+                        amount= {paystackAmount}
+                        paystackkey={paystackKey}
+                        tag="button"
+                    />
                     </div>
+                
+                   
                 </div>
             </div>
         </React.Fragment>
