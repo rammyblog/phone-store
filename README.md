@@ -1,4 +1,4 @@
-This project is still in progress. Plan to move the backend to Django still in the pipeline
+This project is still in progress. Plans to move the backend to Django still in the pipeline
 
 ## Available Scripts
 
