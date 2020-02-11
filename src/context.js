@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { storeProducts, detailProduct } from './data';
+import {Redirect} from 'react-router-dom';
+
+
 const ProductContext = React.createContext();
 
 // Provider
@@ -16,10 +19,10 @@ class ProductProvider extends Component {
         cartSubTotal: 0,
         cartTax: 0,
         CartTotal: 0,
-        key: '',
         email: 'onasanyatunde67@gmail.com',
         payStackAmount: 0,
-        paystackKey: "pk_test_66242613f73c8034560a3eecf9d248787f776bdb"
+        paystackKey: "pk_test_66242613f73c8034560a3eecf9d248787f776bdb",
+        refNo: ''
 
     };
 
@@ -55,8 +58,13 @@ class ProductProvider extends Component {
         
     }
 
+    redirectFunction = () => {
+        return <Redirect to="/invoice" />;
+    }
+
     callback = (response) => {
-        console.log(response); // card charged successfully, get reference here
+        this.redirectFunction();
+        
     }
 
     close = () => {
@@ -67,9 +75,19 @@ class ProductProvider extends Component {
         //you can put any unique reference implementation code here
         let text = "";
         let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.=";
-        for( let i=0; i < 15; i++ )
+        for( let i=0; i < 15; i++ ) {
             text += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text;
+
+        }
+
+        return text
+        
+            // this.setState( () => {
+            //     return {
+            //         refNo: text
+            //     }
+            // })
+         
     }
 
 
