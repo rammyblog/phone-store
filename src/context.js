@@ -58,14 +58,7 @@ class ProductProvider extends Component {
         
     }
 
-    redirectFunction = () => {
-        return <Redirect to="/invoice" />;
-    }
-
-    callback = (response) => {
-        this.redirectFunction();
-        
-    }
+   
 
     close = () => {
         console.log("Payment closed");
@@ -217,7 +210,7 @@ class ProductProvider extends Component {
                 decrement: this.decrement,
                 removeItem: this.removeItem,
                 clearCart: this.clearCart,
-                callback : this.callback,
+                // callback : this.callback,
                 paystackClose: this.close,
                 getReference : this.getReference, 
             }}>

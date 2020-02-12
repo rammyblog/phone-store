@@ -6,10 +6,11 @@ import { ProductConsumer } from '../../context';
 import CartList from './CartList';
 import CartTotals from './CartTotals';
 import Invoice from './Invoice';
+import {withRouter} from 'react-router-dom';
 
 
 
-export default class Cart extends Component {
+class Cart extends Component {
     render() {
         return (
             <section>
@@ -21,8 +22,8 @@ export default class Cart extends Component {
                                 <React.Fragment>
                                 <Title name='your' title='cart'></Title>
                                 <CartColumns />
-                                <CartList value={value}/>
-                                <CartTotals value={value} />
+                                <CartList value={value} />
+                                <CartTotals value={value} history={this.props.history} />
                                 <Invoice />
                                 </React.Fragment>
                             );
@@ -38,3 +39,6 @@ export default class Cart extends Component {
         )
     }
 }
+
+// export default withRouter(connect(mapStateToProps,)(Cart));
+export default withRouter(Cart)
