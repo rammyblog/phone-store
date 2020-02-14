@@ -8,6 +8,7 @@
     line-height: 24px;
     font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
     color: #555;
+    margin-top: 10px;
 }
 
 .invoice-box table {
@@ -89,3 +90,15 @@
 .rtl table tr td:nth-child(2) {
     text-align: left;
 }
+
+.tableClass{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        font-size: 19px;
+        letter-spacing: 0.101em;
+        font-style: normal;
+        line-height: 32px;
+    }
